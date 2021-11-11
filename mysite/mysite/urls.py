@@ -24,6 +24,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
+from blog.feeds import LatestPostsFeed
 
 sitemaps = {
     'posts': PostSitemap,
@@ -35,5 +36,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^feed/$', LatestPostsFeed(), name='post_feed'),
 
 ]
